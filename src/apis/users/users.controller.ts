@@ -1,4 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+
+import { CreateUserDto } from './dto/user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -7,8 +9,8 @@ export class UsersController {
     return 'users';
   }
 
-  @Get('set-password') // users/set-password
-  setPassword(): string {
-    return 'set-password';
+  @Post()
+  createUser(@Body() createUserDto: CreateUserDto): CreateUserDto {
+    return createUserDto;
   }
 }
