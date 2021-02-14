@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  mydb:
+    container_name: mydb
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=nestuser
+      - MONGO_INITDB_ROOT_PASSWORD=nestuser
+      - MONGO_INITDB_DATABASE=nestdb
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+      - ./mongo-db:/data/db
+
+  myapp:
+    container_name: myapp
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../:/usr/src/app
+      - ../node_modules:/usr/src/app/node_modules
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - mydb
