@@ -3,7 +3,6 @@ import { plainToClass } from 'class-transformer';
 
 import { CreateUserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
-import { User } from './user.model';
 import { UserSerializer } from './serializers/user.serializer';
 
 @Controller('users')
