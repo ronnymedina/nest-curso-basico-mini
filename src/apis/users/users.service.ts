@@ -8,6 +8,14 @@ import { CreateUserDto } from './dto/user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
+  /**
+   * Crear un usuario
+   *
+   * @public
+   * @param {CreateUserDto} createCatDto
+   * @returns {Promise<User>}
+   * @example this.userService.create({ name: "example" })
+   */
   create(createCatDto: CreateUserDto): Promise<User> {
     const createdCat = new this.userModel(createCatDto);
 
