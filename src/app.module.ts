@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './apis/users/users.module';
+import config from './config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://nestuser:nestuser@mydb:27017/nestdb?authSource=admin'),
+    MongooseModule.forRoot(config.DATABASE_URL),
     UsersModule,
   ],
   controllers: [],
